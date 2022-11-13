@@ -1,0 +1,330 @@
+<!----Max Bernstein, Assignment-->
+
+<!----The Doc type is HTML-->
+
+<!DOCTYPE html>
+
+<!----This is the HTML tag-->
+
+<html lang="en">
+
+<!----This is the meta data-->
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!----This is the title on the browser tab-->
+    <title>UAT Space Program</title>
+
+<!----This is the css link-->
+    <link rel="stylesheet" type="text/css" href="UAT.SPACE.CSS.FILE.css">
+
+
+</head>
+<!----These are the javascript links-->
+           <!----For the countdown-->
+<script src="UAT.SPACE.JAVASCRIPT.FILE.js"></script>
+           <!----For loops-->
+<script src="UAT.SPACE.JAVASCRIPT.FILE.PURPOSE.LOOPS.js"></script>
+           <!----For table data-->
+<script src="dataloader-1.js"></script>
+
+<!----This is a body tag-->
+
+<body>
+
+
+<!----This is the UAT space progam logo-->
+<center><img src="UATspaceLogo-2.png" alt="UATSPACELOGO" /></center>
+
+
+<!----This is the first heading // More of a title-->
+                    <!----and-->
+<!---- at least 1 creative element:-->
+
+<h1 style="text-align:center; color: azure; text-size-adjust: 50%;"> UAT Space Program</h1>
+
+
+<!----This is the first paragraph-->
+
+<p style = "font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; text-align: center; color: antiquewhite;"> Let US soar to the stars!</p>
+
+<!----This is the break before button-->
+
+
+<br>
+
+<!----This is the alert-->
+
+<script type = "text/javascript">
+
+ alert ("Successfully signned in")
+
+</script>
+
+
+ <!----This is the countdown button-->
+  <!----Countdown code, located in file UAT.SPACE.JAVASCRPT.FILE.JS-->
+<center>
+ <button style="background-color:rgb(0, 151, 151); " onclick="go();" class="Buttons">CountDown</button>
+</center>
+<center>
+<!----This is the 'more info button'-->
+                   <!----Has text color added, aswell-->
+                   <!----Code of the "more info button", is located in file UAT.SPACE.JAVASCRIPT.FILE.PURPOSE.FORLOOPS.js-->
+<button style ="color:rgb(171, 99, 189); background-color: bisque;" onclick ="loop();" class = "loopbutton">More Info-Space Program</button>
+</center>
+ <!----This is defining a ID for the countdown, also for doc.write not to be used.-->
+      <div id="CountingDown"></div> 
+
+
+<br>
+<br>
+<center>
+<!--This is the text defining what the audio is to the viewer-->
+<p style = "font-family: sans-serif; color: rgb(126, 0, 0); font-weight: bold; background-color: azure; font-size: medium;">Play Apollo 11 transmissions</p>
+<!--This is the audio-->
+
+<!--When the page loads, this will automatically play and loop the audio.-->
+<audio controls autoplay loop style="scrollbar-color:purple;">
+<!--This will play the transmissions from earth to space in 1969 mission; Apollo 11-->
+<source src = "Apollo11.mp3.mp3" type="audio/mpeg">
+
+</audio>
+<br>
+<button style = "color:chocolate; background-color: grey;" class="soundbutton" onclick="PlayAudio1();">Play Space Station Sounds</button>
+</center>
+<script type = "text/javascript"> //Variables
+
+class InputData {
+constructor(
+time_seconds,
+latitude,
+longitude,
+gps_altitude,
+bmpSensor_altitude,
+bmpSensor_pressure,
+bmpSensor_temp,
+digSensor_temp,
+cssSensor_temp,
+cssSensor_eCO2,
+cssSensor_TVOC,
+UV,
+accelX,
+accelY,
+accelZ,
+magneticX,
+magneticY,
+magneticZ,
+gyroX,
+gyroY,
+gyroZ
+) {
+this.time_seconds = time_seconds;
+this.latitude = latitude;
+this.longitude = longitude;
+this.gps_altitude = gps_altitude;
+this.bmpSensor_altitude = bmpSensor_altitude;
+this.bmpSensor_pressure = bmpSensor_pressure;
+this.bmpSensor_temp = bmpSensor_temp;
+this.digSensor_temp = digSensor_temp;
+this.cssSensor_temp = cssSensor_temp;
+this.cssSensor_eCO2 = cssSensor_eCO2;
+this.cssSensor_TVOC = cssSensor_TVOC;
+this.UV = UV;
+this.accelX = accelX;
+this.accelY = accelY;
+this.accelZ = accelZ;
+this.magneticX = magneticX;
+this.magneticY = magneticY;
+this.magneticZ = magneticZ;
+this.gyroX = gyroX;
+this.gyroY = gyroY;
+this.gyroZ = gyroZ;
+}
+}
+var data = getData();
+//function to get the data
+function getData() {
+var loadedData = loadData();
+return loadedData;
+}
+function dataRow(legend, value, units) {
+msg = "<td>";
+msg += legend;
+msg += ": </td><td>";
+msg += value;
+msg += " " + units;
+msg += "</td>";
+return msg;
+}
+
+    var theTime = new Date();
+    var tempTime = new Date();
+    var time_interval = 5000;
+    var last_iteration = 0;
+    var running = true;
+    var index = 0;
+    var timer;
+
+
+
+        //function to load and display data
+         function updateDisplay(){
+         theTime = new Date();
+        //This will update the display on the table
+        console.log(
+            "Display : " + (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+            " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+            " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+        );
+        //defining varible timeRead
+        var timeRead = data[index].time_seconds;
+        //If the time is more than ten, than...
+        if (timeRead >= 10) {
+            document.getElementById("data").rows["seconds"].innerHTML = dataRow("Time Elapsed", data[index].time_seconds,"seconds");
+            document.getElementById("data").rows["latitude"].innerHTML = dataRow("Latitude", data[index].latitude," ");
+            document.getElementById("data").rows["longitude"].innerHTML = dataRow("Longitude", data[index].longitude," ");
+            document.getElementById("data").rows["gps_altitude"].innerHTML = dataRow("gps Altitude", data[index].gps_altitude,"");
+            document.getElementById("data").rows["bmpSensor_altitude"].innerHTML = dataRow("BMP Sensor Altitude", data[index].bmpSensor_altitude,"");
+            document.getElementById("data").rows["bmpSensor_pressure"].innerHTML = dataRow("BMP Sensor Pressure", data[index].bmpSensor_pressure,"");
+            document.getElementById("data").rows["bmpSensor_temp"].innerHTML = dataRow("BMP Sensor Temp", data[index].bmpSensor_temp,"");
+            document.getElementById("data").rows["cssSensor_temp"].innerHTML = dataRow("CSS Sensor Temp", data[index].cssSensor_temp,"");
+            document.getElementById("data").rows["cssSensor_eCO2"].innerHTML = dataRow("CSS Sensor eCO2", data[index].cssSensor_eCO2,"");
+            document.getElementById("data").rows["cssSensor_TVOC"].innerHTML = dataRow("CSS Sensor TVOC", data[index].cssSensor_TVOC,"");
+            document.getElementById("data").rows["UV"].innerHTML = dataRow("UV", data[index].UV,"");
+            document.getElementById("data").rows["accelX"].innerHTML = dataRow("accelX", data[index].accelX,"");
+            document.getElementById("data").rows["accelY"].innerHTML = dataRow("accelY", data[index].accelY,"");
+            document.getElementById("data").rows["accelZ"].innerHTML = dataRow("accelZ", data[index].accelZ,"");
+            document.getElementById("data").rows["magneticX"].innerHTML = dataRow("magneticX", data[index].magneticX,"");
+            document.getElementById("data").rows["magneticY"].innerHTML = dataRow("magneticY", data[index].magneticY,"");
+            document.getElementById("data").rows["magneticZ"].innerHTML = dataRow("magneticZ", data[index].magneticZ,"");
+            document.getElementById("data").rows["gyroX"].innerHTML = dataRow("gyroX", data[index].gyroX,"");
+            document.getElementById("data").rows["gyroY"].innerHTML = dataRow("gyroY", data[index].gyroY,"");
+            document.getElementById("data").rows["gyroZ"].innerHTML = dataRow("gyroZ", data[index].gyroZ,"");
+
+        if (index < 500) {
+                index++;
+        } else {
+                index = 0;
+            }
+        }
+
+        //displays the time at the bottom
+        document.getElementById("time").innerHTML = (theTime.getHours() < 10 ? "0"+ theTime.getHours() : theTime.getHours()) +
+            " : " + (theTime.getMinutes() < 10 ? "0"+ theTime.getMinutes() : theTime.getMinutes()) + 
+            " : " + (theTime.getSeconds() < 10 ? "0"+ theTime.getSeconds() : theTime.getSeconds())
+    }
+
+
+
+          </script>
+      
+<!--This is the first table, only displaying a header-->
+<center>
+      <p class="top">
+        <table class="tableTop">
+           
+        <tr>
+        <td>
+        <h1
+        style = "color:azure; text-align: center; font-family: 'Courier New', Courier, monospace;">
+                                        UAT Space Program Data
+        </h1>
+        </td>
+        </tr>
+        </table style="background-color:white;">
+        <!--This is the second table, pretty much the main table, and the only table thats really a table-->
+      </p>
+      <!--Defining styles-->
+        <table id="data" border = "2" width="70%" class="table2">
+        <col style="width: 35%;">
+        <col style="width: 35%;">
+        <thead>
+
+            <!--This will style the table headers-->
+            <tr style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; background-color: rgba(137, 43, 226, 0.397);">
+                <!--These are the table headers-->
+                
+                <th text-align = "center"style="color:white;">Data Type</th>
+                <th text-align ="center"style="color:white;">Reading</th>
+                
+            </tr>
+           
+        </thead>
+       
+        <!--This is the body of the table, within it, has the data from the UAT SPACE program-->
+        <tbody style="background-color:rgba(49, 4, 250, 0.205); font-family:Georgia, 'Times New Roman', Times, serif; color:rgb(4, 0, 7);">
+
+            <tr id="seconds"></tr>
+            <tr id="latitude"></tr>
+            <tr id="longitude"></tr>
+            <tr id="gps_altitude"></tr>
+            <tr id="bmpSensor_altitude"></tr>
+            <tr id="bmpSensor_pressure"></tr>
+            <tr id="bmpSensor_temp"></tr>
+            <tr id="digSensor_temp"></tr>
+            <tr id="cssSensor_temp"></tr>
+            <tr id="cssSensor_eCO2"></tr>
+            <tr id="cssSensor_TVOC"></tr>
+            <tr id="UV"></tr>
+            <tr id="accelX"></tr>
+            <tr id="accelY"></tr>
+            <tr id="accelZ"></tr>
+            <tr id="magneticX"></tr>
+            <tr id="magneticY"></tr>
+            <tr id="magneticZ"></tr>
+            <tr id="gyroX"></tr>
+            <tr id="gyroY"></tr>
+            <tr id="gyroZ"></tr>
+
+        </tbody>
+
+        <!--The end of the table-->
+    </table>
+
+    
+            <!--Break ( aka a space ) before the start, and stop, buttons-->
+
+    <br>
+
+
+<!--These are the buttons that will start and stop the table, onclick will preform the function-->
+<script type ="text/javascript">       
+   //These are the buttons under the table, these are the functions of said buttons
+            
+            
+            
+    //this function disables start button and enables stop button 
+    function start()
+    {
+     document.getElementById("data").rows["seconds"].innerHTML = "Reading data...";
+     index = 0;
+     timer = setInterval(updateDisplay, time_interval);
+    document.getElementById("stopButton").disabled = false;
+    document.getElementById("startButton").disabled = true;
+    }
+    //this function disables stop button and enables start button
+    function stop()
+    {
+    clearInterval(timer);
+    document.getElementById("startButton").disabled = false;
+    document.getElementById("stopButton").disabled = true;
+    }</script>
+
+    <button class = "STARTBUTTON" type="button" value = "Start" id = "startButton" onclick= " start() "> Start </button>
+
+
+    <button class = "STOPBUTTON" disabled=true id = "stopButton" onclick= "stop() "> Stop </button>
+
+</center>
+
+ <!----This is the end of the body-->
+</body>
+ <!----This is the end of the html code-->
+</html>

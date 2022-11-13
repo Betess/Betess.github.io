@@ -1,0 +1,85 @@
+<!----Max Bernstein, 10/14/22, Assignment:Launching your UAT Space Program
+    ...Blastoff!-->
+
+<!----The Doc type is HTML-->
+
+<!----This is the HTML tag-->
+<!DOCTYPE html>
+
+<html lang="en">
+<!----This is the meta data-->
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!----This is the title on the browser tab-->
+    <title>==    UAT SPACE -+- Log-in ==</title>
+<!---This links to a css file--->
+    <link rel="stylesheet" type="text/css" href="UAT.SPACE.CSS.FILE.LOGIN">
+
+
+
+</head>
+<!---This is the Body--->
+<body>
+    <!---This is linking the javascript file--->
+    <script src="UAT.SPACE.JAVASCRIPT.FILE.PURPOSE.LOGIN.FORM.VAILD.JS"></script>
+<!---Heading 1, its centered, and colored with breaks--->
+    <h1 style="color: rgb(132, 0, 255);   text-align: center"    >University of Advancing Technology <br> <br> Space Program <br> - <br> Log-in </h1>   
+    <!---Creating a class named Login--->
+    <div class="Login" >  
+    <!---Defines form, and said forms actions--->   
+    <form name="LoginForm" action="UAT SPACE.html" onsubmit="return validate()" method="post">        
+        <br>
+        <br>
+        <!---Heading 2 colored and centered--->
+        <h2 style="color:rgb(73, 25, 97);text-align: center">Please enter your First and Last name <br> and your three digit badge number</p>
+                                               <!---These are areas for user input--->
+        <p style="text-align: center">First: <input type="text" size=20  maxlength="25" id="FirstName"> </p><br>       
+        <p style="text-align: center">Last: <input type="text" size=20  maxlength="25" id="LastName">  </p><br>
+
+     
+        <p style="text-align: center">Badge Number <br>Three (3) digit #:
+            <input type="text" 
+            size=3 
+            name="Badge"
+        
+            onkeypress="return onlyNumberKey(event)" 
+            maxlength="5" 
+            size="50%" />
+
+
+        <p>
+            <!---Submit button, which will validate user input--->
+             <input type="submit" onkeypress="return false;validate()" value="Submit" id="Submit" >     
+            <!---Another button inwhich clears text--->
+             <input type="reset" value="Clear Typed Text" name="Reset">  
+        </p>         
+    </form>
+
+</div>
+</body>
+<!---The function makes sure only numbers can be entered for the badge number--->
+<script>
+
+
+function onlyNumberKey(evt) {
+      
+    // Only ASCII character in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+    return true;
+}
+</script>
+<script>
+function detailssubmit() {
+    alert("Your details were Submitted");
+}
+</script>
+
+</html>
+    </body>

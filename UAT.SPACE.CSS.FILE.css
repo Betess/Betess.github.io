@@ -1,0 +1,8 @@
+/*This is the body*/
+body {
+    /* background color is  a gradient to right purple to blue, it repeats as the body grows, is centered */
+    background-image: linear-gradient(to right, rgb(220, 117, 230) , rgb(5, 13, 116));
+    background-repeat: repeat;
+    background-position: center;
+
+}
